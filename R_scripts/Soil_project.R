@@ -15,6 +15,8 @@ summary(lm_ochre)
 plot(lm_ochre)
 lm_ochre_resids<-resid(lm_ochre)
 shapiro.test(lm_ochre_resids)
+
+##this model is the one we used 
 lm_ochre_p<-lm(normal_percent~iron_ochre_amendement_percent+phosphorous_loading_conc, data=soils_p)
 summary(lm_ochre_p)
 plot(lm_ochre_p)
@@ -23,10 +25,13 @@ shapiro.test(lm_ochre_p_resids)
 bartlett.test(lm_ochre_p_resids)
 summary(lm_ochre_p)
  AIC(lm_phos,lm_ochre, lm_ochre_p)
+
+##ignore this for now this was us trying to plot our mixed model
 #partial effect of phosphorous
 lm_ochre_p
 soil_p_NA<-na.omit(soils_p)
 soil_p_NA$predicted <- predict(lm_ochre_p)
+
 
 ggplot(soil_p_NA, aes(x=predicted, y=normal_percent))+
   geom_point(alpha=0.6)+
